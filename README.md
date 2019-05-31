@@ -11,9 +11,9 @@ Firt install the prerequisites than feel free to clone this repository
 [Tweepy API](http://docs.tweepy.org/en/3.7.0/install.html)
 
 ## Built with
-Python 2.7
-Tweepy
-Twitter's API
+* Python 2.7
+* Tweepy
+* Twitter's API
 ## How to use
 
 Fill the keys with your Twitter app keys
