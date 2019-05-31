@@ -33,6 +33,14 @@ Go to the repository and use
 ```bash
 python2.7 bot.py
 ```
+## To-do
+* Respond to the user with the status of the game
+* Let users add their own words
+* Track users stats
+* Help command
+* Stats command
+* Error gestion on added word (no special characters and minimal size)
+
 ## License
 [Right here](https://github.com/yoansj/BotPendu/blob/master/LICENSE)
 
