@@ -7,8 +7,8 @@ Firt install the prerequisites than feel free to clone this repository
 
 ## Prerequisites
 
-[Python 2.7](https://www.python.org/downloads/)
-[Tweepy API](http://docs.tweepy.org/en/3.7.0/install.html)
+* [Python 2.7](https://www.python.org/downloads/)
+* [Tweepy API](http://docs.tweepy.org/en/3.7.0/install.html)
 
 ## Built with
 * Python 2.7
