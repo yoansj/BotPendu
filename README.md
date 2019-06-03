@@ -36,8 +36,15 @@ python2.7 bot.py
 ```
 ## How do the users play
 
-* To play the user has to tweet to the bot the content of ```python COMMAND_START``` defined in ```consts.py```
-By default the command is ```python "/start"```
+* To play the user has to tweet to the bot the content of 
+```python
+COMMAND_START
+``` 
+defined in ```consts.py```
+By default the command is 
+```python 
+"/start"
+```
 * Then the bot will respond to the user with a hangman pics and a series of ```?????``` which is the word to find
 * The user has to respond with letters he thinks belongs to the word
 * The user can either respond with one letter ```@bot a``` or multiple letters ```@bot XdeF```
@@ -64,8 +71,16 @@ RETURN_NO_ERROR = "ok"
 RETURN_ERROR = "nok"
 ```
 * You can modify the constants to change the behavior of the bot
-  * ```python COMMAND_START = "/play"``` the users will now have to tweet /play to play
-  * ```python TWEET_GAME_STOPPED = "Your game was stopped, thanks for playing :)"``` will change the game stop message
+  * 
+  ```python
+  COMMAND_START = "/play"
+  ``` 
+  the users will now have to tweet /play to play
+  * 
+  ```python
+  TWEET_GAME_STOPPED = "Your game was stopped, thanks for playing :)"
+  ```
+  will change the game stop message
 
 ## To-do
 * Handle accents (currently causing crash)
