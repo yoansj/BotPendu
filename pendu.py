@@ -48,7 +48,7 @@ def find_same_letter(i, pinfo):
     if (find_result != -1):
         tmp.user_word[find_result] = tmp.to_find[find_result]
         tmp.to_find[find_result] = "*"
-        print tmp.user_word[find_result], tmp.to_find[find_result]
+        #print tmp.user_word[find_result], tmp.to_find[find_result]
         tmp.letter_found = tmp.letter_found + 1
         tmp = find_same_letter(i, tmp)
     return tmp
@@ -64,7 +64,7 @@ def search_letter(pinfo):
         find_result = "".join(tmp.to_find).find(tmp.u_input[i].upper())
         if (find_result == -1):
             tmp.u_hp -= 1
-            print "Mauvaise lettre :(", tmp.u_input[i]
+            #print "Mauvaise lettre :(", tmp.u_input[i]
         else:
             tmp.user_word[find_result] = tmp.to_find[find_result]
             tmp.to_find[find_result] = "*"
@@ -82,7 +82,7 @@ class player():
     objective = to_find.__len__() - 1
     user_word = list(fill_user_word(to_find))
 
-    def fill_class_from_file(self, file):
+    def fill_class_from_file(self, file, tweet):
         f = os.path.isfile(consts.RUNNING_GAMES + file + ".txt")
         if f:
             print "Found file of player", file
@@ -99,10 +99,12 @@ class player():
                 tmp = line.split()
                 self.letter_found = int(tmp[1])
             if line[0] == "?":
-                self.user_word = line
+                self.user_word = list(line)
             if "TOFIND" in line:
                 tmp = line.split()
-                self.to_find = tmp[1]
+                self.to_find = list(tmp[1])
+        tmp = tweet.split()
+        self.u_input = tmp[1]
             
 
 def gameloop():

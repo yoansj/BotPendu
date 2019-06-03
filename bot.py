@@ -32,12 +32,37 @@ class TweetListener(tweepy.StreamListener):
         print localtime, ": added", text, "in logs"
         f.close()
 
+    #Updates the file of an existing game
+    #Takes information in the tmp_player variable
+    def update_file(self, name, tmp_player):
+        f = open(consts.RUNNING_GAMES + name + ".txt", "w")
+        tmp1 = "".join(tmp_player.to_find)
+        tmp2 = "".join(tmp_player.user_word)
+        f.writelines("HP " + str(tmp_player.u_hp) + "\n" +
+        "TOFIND " + tmp1 + "\n" + tmp2 + "FOUND " + 
+        str(tmp_player.letter_found))
+        f.close()
+
+    #Respond to the user
+    #If the tweet is a game tweet
+    def respond_game(self, tmp_player, status):
+        tmp = "".join(tmp_player.user_word)
+        TweetListener.add_log(self, "Responding game status to user " + status.user.screen_name)
+        api.update_status("@" + status.user.screen_name + "\n" + pendu.print_hangman(tmp_player.u_hp) 
+        + "\n" + tmp + "\n> Respond with your letters", status.id)
 
     #When we receive a tweet
     def on_status(self, status):
         print status.text, "Processing tweet..."
         api.create_favorite(status.id)
         TweetListener.add_log(self, status.text)
+    #If we found a tweet containing only a mention
+    #We stop processing the tweet
+        tmp = status.text.split()
+        if len(tmp) <= 1:
+            TweetListener.add_log(self, "Bad tweet end of processing")
+            api.destroy_favorite(status.id)
+            return
     #If we find a command then we stop processing the tweet
     #We print a message and destorys the favorite
         if TweetListener.search_command(self, status) == consts.RETURN_NO_ERROR:
@@ -46,15 +71,22 @@ class TweetListener(tweepy.StreamListener):
             return
     #If we cant fill the class from the file it means that the user has no game started
     #If that happens we stop processing the command and send a tweet to the user
-        if tmp_player.fill_class_from_file(status.user.screen_name) == consts.RETURN_ERROR:
+        global tmp_player
+        if tmp_player.fill_class_from_file(status.user.screen_name, status.text) == consts.RETURN_ERROR:
             api.update_status("@" + status.user.screen_name + "\n" + "You have no game running\n" +
             "If you want to play use " + consts.COMMAND_START + "\nIf you want some help use " + consts.COMMAND_HELP,
             status.id)
             api.destroy_favorite(status.id)
             return
+        tmp_player = pendu.search_letter(tmp_player)
+        TweetListener.update_file(self, status.user.screen_name, tmp_player)
+        TweetListener.respond_game(self, tmp_player, status)
         api.destroy_favorite(status.id)
 
 
+    #def end_condition(self, status, tmp_player):
+    #    if tmp_player.u_hp <= 0:
+            
     #Checks if a game is running
     #If a game is running responds with an error message
     #Otherwise creates a file for the player and then tweets
