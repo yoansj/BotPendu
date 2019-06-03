@@ -40,7 +40,7 @@ python2.7 bot.py
 ```python
 COMMAND_START
 ``` 
-defined in ```consts.py```
+which is defined in ```consts.py```
 By default the command is 
 ```python 
 "/start"
@@ -71,17 +71,15 @@ RETURN_NO_ERROR = "ok"
 RETURN_ERROR = "nok"
 ```
 * You can modify the constants to change the behavior of the bot
-  * 
   ```python
   COMMAND_START = "/play"
   ``` 
-  the users will now have to tweet /play to play
-  * 
+  Does that the users will now have to tweet /play to play
   ```python
   TWEET_GAME_STOPPED = "Your game was stopped, thanks for playing :)"
   ```
-  will change the game stop message
-
+  will change the game stop tweet
+  
 ## To-do
 * Handle accents (currently causing crash)
 * Do the end conditions
