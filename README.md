@@ -34,7 +34,6 @@ Go to the repository and use
 python2.7 bot.py
 ```
 ## To-do
-* Respond to the user with the status of the game
 * Let users add their own words
 * Track users stats
 * Help command
