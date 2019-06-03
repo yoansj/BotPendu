@@ -51,6 +51,19 @@ By default the command is
 * The bot is case insensitive
 * If the user responds with multiple letters and has multiple wrong letters he will loose as much life as he has wrong letters
 
+You can see the informations about a running game inside the directory
+```python
+RUNNING_GAMES
+```
+The files inside this directory are .txt with names of the users
+The file will look like this
+```
+HP 8
+TOFIND TEST
+????
+FOUND 0
+```
+
 ## Customize the bot !
 * If you look at the ```consts.py``` file you will see this
 ```python
@@ -67,8 +80,6 @@ TWEET_GAME_STOPPED_FAIL = "Error : No game found\nUse /start to start a game"
 TWEET_ERROR_GAME_RUNNING = "Error : game already running\nUse /quit to quit the game"
 TWEET_GAME_START = "Game starts !\n"
 RUNNING_GAMES = "RunningGames/"
-RETURN_NO_ERROR = "ok"
-RETURN_ERROR = "nok"
 ```
 * You can modify the constants to change the behavior of the bot
   ```python
